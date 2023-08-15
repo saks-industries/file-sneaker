@@ -43,7 +43,7 @@ func main() {
 
 	go func() {
 		sigchan := make(chan os.Signal, 1)
-		signal.Notify(sigchan, os.Interrupt)
+		signal.Notify(sigchan, os.Interrupt, syscall.SIGTERM)
 		<-sigchan
 		log.Println("signal: interrupt")
 		fuse.Unmount(mountpoint)
